@@ -3,6 +3,7 @@ using DesignPattern.Builder;
 using DesignPattern.ChainOfResponsibility;
 using DesignPattern.Extensions;
 using DesignPattern.Factory;
+using DesignPattern.Observer.WeatherStation;
 using DesignPattern.Prototype;
 using DesignPattern.Singleton;
 using DesignPattern.Template;
@@ -124,6 +125,24 @@ archerGame.Play();
 
 BaseGame footballGame = new FootballGame();
 footballGame.Play();
+
+WeatherDataProvider weatherData = new WeatherDataProvider();
+
+CurrentConditionsDisplay currentDisp = new CurrentConditionsDisplay(weatherData);
+ForecastDisplay forecastDisp = new ForecastDisplay(weatherData);
+
+weatherData.SetMeasurements(40, 78, 3);
+Console.WriteLine();
+weatherData.SetMeasurements(45, 79, 4);
+Console.WriteLine();
+weatherData.SetMeasurements(46, 73, 6);
+
+forecastDisp.Dispose();
+Console.WriteLine();
+Console.WriteLine("Forecast Display removed");
+Console.WriteLine();
+weatherData.SetMeasurements(36, 53, 8);
+
 
 Console.WriteLine("Please enter to exit!");
 Console.ReadLine();
