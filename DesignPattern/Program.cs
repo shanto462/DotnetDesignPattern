@@ -3,6 +3,7 @@ using DesignPattern.Builder;
 using DesignPattern.ChainOfResponsibility;
 using DesignPattern.Factory;
 using DesignPattern.Iterator;
+using DesignPattern.Mediator;
 using DesignPattern.Memento;
 using DesignPattern.Observer.WeatherStation;
 using DesignPattern.Prototype;
@@ -199,6 +200,18 @@ undoRedoHandler.Redo();
 Console.WriteLine($"{editor.Text} Current State");
 
 undoRedoHandler.ShowHistory();
+
+
+IChatRoom chatRoom = new ChatRoom();
+
+IUser fbBotUser = new FBBotUser("Bot from fb");
+IUser regularUser = new RegularUser("Bob");
+
+chatRoom.Register(fbBotUser);
+chatRoom.Register(regularUser);
+
+fbBotUser.Send("Bob", "Hello click on link www.trackme.fb.com");
+regularUser.Send("Bot from fb", "Okay wait!");
 
 
 Console.WriteLine("Please enter to exit!");
