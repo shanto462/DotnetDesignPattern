@@ -1,8 +1,9 @@
 ﻿using DesignPattern.AbstractFactory;
 using DesignPattern.Builder;
 using DesignPattern.ChainOfResponsibility;
-using DesignPattern.Extensions;
 using DesignPattern.Factory;
+using DesignPattern.Iterator;
+using DesignPattern.Memento;
 using DesignPattern.Observer.WeatherStation;
 using DesignPattern.Prototype;
 using DesignPattern.Singleton;
@@ -142,6 +143,62 @@ Console.WriteLine();
 Console.WriteLine("Forecast Display removed");
 Console.WriteLine();
 weatherData.SetMeasurements(36, 53, 8);
+
+var collection = new WordsCollection();
+collection.AddItem("First");
+collection.AddItem("Second");
+collection.AddItem("Third");
+
+Console.WriteLine("Straight traversal:");
+
+foreach (var element in collection)
+{
+    Console.WriteLine(element);
+}
+
+Console.WriteLine("\nReverse traversal:");
+
+collection.ReverseDirection();
+
+foreach (var element in collection)
+{
+    Console.WriteLine(element);
+}
+
+Console.WriteLine();
+
+TextEditor editor = new TextEditor("Hello world!");
+
+UndoRedoHandler undoRedoHandler = new UndoRedoHandler(editor);
+undoRedoHandler.Save();
+
+editor.SetText("Hello worl");
+undoRedoHandler.Save();
+
+editor.SetText("Hello wo");
+undoRedoHandler.Save();
+
+editor.SetText("Hello");
+undoRedoHandler.Save();
+
+undoRedoHandler.ShowHistory();
+
+undoRedoHandler.Undo();
+Console.WriteLine($"{editor.Text} Current State");
+
+undoRedoHandler.Undo();
+Console.WriteLine($"{editor.Text} Current State");
+
+undoRedoHandler.Redo();
+Console.WriteLine($"{editor.Text} Current State");
+
+undoRedoHandler.Undo();
+Console.WriteLine($"{editor.Text} Current State");
+
+undoRedoHandler.Redo();
+Console.WriteLine($"{editor.Text} Current State");
+
+undoRedoHandler.ShowHistory();
 
 
 Console.WriteLine("Please enter to exit!");

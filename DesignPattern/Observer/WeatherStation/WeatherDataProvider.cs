@@ -8,7 +8,7 @@ namespace DesignPattern.Observer.WeatherStation
 {
     public class WeatherDataProvider : IPublisher
     {
-        private List<ISubscriber> _subcribers;
+        private readonly List<ISubscriber> _subcribers;
         private WeatherData data;
 
         public WeatherDataProvider()

@@ -8,8 +8,8 @@ namespace DesignPattern.Observer.WeatherStation
 {
     public class CurrentConditionsDisplay : ISubscriber
     {
-        WeatherData data;
-        IPublisher weatherData;
+        private WeatherData data;
+        private readonly IPublisher weatherData;
 
         public CurrentConditionsDisplay(IPublisher weatherDataProvider)
         {
