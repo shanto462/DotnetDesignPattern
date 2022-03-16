@@ -1,6 +1,7 @@
 ﻿using DesignPattern.AbstractFactory;
 using DesignPattern.Builder;
 using DesignPattern.ChainOfResponsibility;
+using DesignPattern.Command;
 using DesignPattern.Factory;
 using DesignPattern.Iterator;
 using DesignPattern.Mediator;
@@ -10,6 +11,7 @@ using DesignPattern.Prototype;
 using DesignPattern.Singleton;
 using DesignPattern.Template;
 using System.Diagnostics;
+using Switch = DesignPattern.Command.Switch;
 
 Parallel.For(0, 10000, (i) =>
 {
@@ -212,6 +214,17 @@ chatRoom.Register(regularUser);
 
 fbBotUser.Send("Bob", "Hello click on link www.trackme.fb.com");
 regularUser.Send("Bot from fb", "Okay wait!");
+
+
+ISwitchable lamp = new Light();
+
+ICommand switchClose = new CloseSwitchCommand(lamp);
+ICommand switchOpen = new OpenSwitchCommand(lamp);
+
+Switch @switch = new Switch(switchClose, switchOpen);
+
+@switch.Open();
+@switch.Close();
 
 
 Console.WriteLine("Please enter to exit!");
